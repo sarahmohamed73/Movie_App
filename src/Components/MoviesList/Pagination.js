@@ -1,5 +1,5 @@
 import React from 'react'
-import { moviePage } from './../../APIs/moviesPages'
+import { moviePage } from '../../APIs/moviesPages'
 import { useState, useEffect } from "react";
 
 export default function Pagination() {

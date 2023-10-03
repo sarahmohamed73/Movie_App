@@ -11,10 +11,10 @@ export default function Router() {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/Product_App" element={<Home />} />
-        <Route path="/Product_App/Details" element={<Details />} />
-        <Route path="/Product_App/WishList" element={<WishList />} />
-        <Route path="/Product_App/Search" element={<Search />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Details" element={<Details />} />
+        <Route path="/WishList" element={<WishList />} />
+        <Route path="/Search" element={<Search />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Suspense>
