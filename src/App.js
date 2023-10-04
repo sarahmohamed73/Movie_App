@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <SearchMovies/>
+        {/* <SearchMovies/> */}
         <div className="container">
           <Router />
         </div>
