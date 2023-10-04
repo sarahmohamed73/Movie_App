@@ -4,9 +4,12 @@ import { moviePage } from '../../APIs/moviesPages';
 import { search } from '../../APIs/search';
 import MovieCard from './MovieCard';
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function MovieList() {
   const [moviesList, setMoviesList] = useState([])
+  const [movieName, setMovieName] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     movieList()
@@ -22,14 +25,29 @@ export default function MovieList() {
       .catch((error) => console.log(error));
     }, []);
 
+  const handelMovieName = (event) => {
+    setMovieName(event.target.value)
+  }
+
+  const handelSubmit = (event) => {
+    event.preventDefault()
+    if(movieName != '') {
+      navigate(`/Search/${movieName}`)
+    }
+  }
+
+  const redirectToDetails = (id) => {
+    navigate(`/Details/${id}`)
+  }
+
   return (
     <div>
       <div className='search-part bg-body-secondary my-5 p-5 rounded rounded-1 '>
         <h1 className='text-start mb-3'>Welcome To Our Movie App</h1>
         <p className='text-start mb-3'>Millions of movies, TV shows and people to discover. Explore now.</p>
-        <form className='input-group'>
-          <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-          <button type="button" class="btn btn-success">search</button>
+        <form className='input-group' onSubmit={(event) => handelSubmit(event)}>
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={movieName} name="movieName" onChange={(event) => handelMovieName(event)} />
+          <button type="submit" class="btn btn-success">search</button>
         </form>
       </div>
       
@@ -39,7 +57,7 @@ export default function MovieList() {
           {moviesList.map((movie) => {
             return (
               <div className="col d-flex justify-content-center align-items-center" key={movie.id}>
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie} navigateDetail={(id) => redirectToDetails(id)}/>
               </div>
             );
           })}

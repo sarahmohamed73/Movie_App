@@ -12,9 +12,9 @@ export default function Router() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Details" element={<Details />} />
+        <Route path="/Details/:id" element={<Details />} />
         <Route path="/WishList" element={<WishList />} />
-        <Route path="/Search" element={<Search />} />
+        <Route path="/Search/:name" element={<Search />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Suspense>
