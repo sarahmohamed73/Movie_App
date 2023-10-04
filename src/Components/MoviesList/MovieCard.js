@@ -3,6 +3,7 @@ import StarRating from './Rating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as NotLike } from "@fortawesome/free-regular-svg-icons"
 import { faHeart as Like } from "@fortawesome/free-solid-svg-icons"
+// import PropTypes from 'prop-types'
 
 export default function MovieCard({ movie, navigateDetail }) {
     return (
@@ -20,6 +21,21 @@ export default function MovieCard({ movie, navigateDetail }) {
             </span>
           </p>
         </div>  
+
+{/* {
+   MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    original_title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    media_type: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+}
+        */}
+
+
       </div>
     )
 }

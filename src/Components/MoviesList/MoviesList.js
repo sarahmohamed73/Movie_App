@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MovieList() {
+export default function MovieList({searchProp}) {
   const [moviesList, setMoviesList] = useState([])
   const [movieName, setMovieName] = useState('')
   const navigate = useNavigate()
@@ -42,7 +42,7 @@ export default function MovieList() {
 
   return (
     <div>
-      <div className='search-part bg-body-secondary my-5 p-5 rounded rounded-1 '>
+      {/* <div className='search-part bg-body-secondary my-5 p-5 rounded rounded-1 ' >
         <h1 className='text-start mb-3'>Welcome To Our Movie App</h1>
         <p className='text-start mb-3'>Millions of movies, TV shows and people to discover. Explore now.</p>
         <form className='input-group' onSubmit={(event) => handelSubmit(event)}>
@@ -50,7 +50,7 @@ export default function MovieList() {
           <button type="submit" class="btn btn-success">search</button>
         </form>
       </div>
-      
+       */}
       <div className='movies'>
         <h3 className='text-start mb-4'>Popular Movies</h3>
         <div className="row row-cols-1 row-cols-lg-6 row-cols-md-2 g-4 justify-content-center align-items-center">
