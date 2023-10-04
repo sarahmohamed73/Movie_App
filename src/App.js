@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import Router from "./Router/Router";
+import SearchMovies from "./Components/Search/Search";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
+        <SearchMovies/>
         <div className="container">
           <Router />
         </div>
