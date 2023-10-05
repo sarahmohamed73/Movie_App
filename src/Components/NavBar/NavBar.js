@@ -2,8 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
+  const counter = useSelector((state) => state.wishlist.counter) 
   return (
     <nav className="navbar navbar-expand-lg bg-success px-5">
       <div className="container-fluid">
@@ -18,8 +20,8 @@ export default function NavBar() {
               <li><a class="dropdown-item" href="#">AR</a></li>
             </ul>
           </div>
-          <NavLink className="wishList px-3 text-dark" to="/WishList" >
-            <FontAwesomeIcon icon={faHeart} className="fs-5" />
+          <NavLink className="wishList px-3 text-dark text-decoration-none " to="/WishList" >
+            <FontAwesomeIcon icon={faHeart} className="fs-5" /> <sup>({counter})</sup>
           </NavLink>
         </div>
       </div>

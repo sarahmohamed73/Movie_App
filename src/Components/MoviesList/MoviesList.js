@@ -1,29 +1,30 @@
 import React from 'react'
 import { movieList } from './../../APIs/movies'
 import { moviePage } from '../../APIs/moviesPages';
-import { search } from '../../APIs/search';
 import MovieCard from './MovieCard';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Pagination from "./Pagination"
 
 export default function MovieList() {
   const [moviesList, setMoviesList] = useState([])
   const [movieName, setMovieName] = useState('')
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate()
 
   useEffect(() => {
     movieList()
       .then((result) => setMoviesList(result.data.results))
       .catch((error) => console.log(error));
-
-      moviePage()
-      .then((result) => console.log(result.data.results))
-      .catch((error) => console.log(error));
-
-      search()
-      .then((result) => console.log(result.data.results))
-      .catch((error) => console.log(error));
     }, []);
+
+  useEffect(() => {
+      moviePage(currentPage)
+      .then((result) => {
+        setMoviesList(result.data.results)
+      })
+      .catch((error) => console.log(error));
+    }, [currentPage]);
 
   const handelMovieName = (event) => {
     setMovieName(event.target.value)
@@ -39,6 +40,12 @@ export default function MovieList() {
   const redirectToDetails = (id) => {
     navigate(`/Details/${id}`)
   }
+
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   return (
     <div>
@@ -62,6 +69,13 @@ export default function MovieList() {
           })}
         </div>
       </div>
+
+      <div className='text-center'>
+      <Pagination
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </div>
     </div>    
   )
 }
