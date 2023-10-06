@@ -48,13 +48,13 @@ export default function MovieList() {
   };
 
   return (
-    <div>
+    <>
       <div className='search-part bg-body-secondary my-5 p-5 rounded rounded-1 ' >
         <h1 className='text-start mb-3'>Welcome To Our Movie App</h1>
         <p className='text-start mb-3'>Millions of movies, TV shows and people to discover. Explore now.</p>
         <form className='input-group' onSubmit={(event) => handelSubmit(event)}>
           <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={movieName} name="movieName" onChange={(event) => handelMovieName(event)} />
-          <button type="submit" class="btn btn-success">search</button>
+          <button type="submit" class="btn text-light" style={{backgroundColor: 'var(--mainColor)'}}>search</button>
         </form>
       </div>
       <div className='movies'>
@@ -76,6 +76,6 @@ export default function MovieList() {
         onPageChange={handlePageChange}
       />
     </div>
-    </div>    
+    </>    
   )
 }

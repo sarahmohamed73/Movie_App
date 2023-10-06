@@ -1,10 +1,10 @@
 import React from 'react'
-import WishListMovies from './../Components/WishList/WishList'
+import WatchList from '../Components/WatchList/WatchList'
 
 export default function WishList() {
   return (
     <div>
-      <WishListMovies />
+      <WatchList />
     </div>
   )
 }
