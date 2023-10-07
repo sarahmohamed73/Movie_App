@@ -8,10 +8,9 @@ import { faHeart as NotLike } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as Like } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { addMovie, removeMovie } from "./../../Store/Slices/wishlistSlice";
+import { addMovie, removeMovie } from "./../../Store/Slices/watchlistSlice";
 
 export default function MovieDetails() {
-<<<<<<< HEAD
   const [moviesDetails, setmoviesDetails] = useState([])
   const [movieGenres, setMovieGenres] = useState([])
   const [movieLanguages, setMovieLanguage] = useState([])
@@ -121,16 +120,3 @@ export default function MovieDetails() {
     </div>
   )     
 }
-=======
- 
-  useEffect(() => {
-    movieDetails()
-      .then((result) => console.log(result.data))
-      .catch((error) => console.log(error));
-    }, []);
-
-  return (
-    <></>
-  )
-}
->>>>>>> aa7b7c9bdc0246f3f619d7fc48679c1852f4057f
