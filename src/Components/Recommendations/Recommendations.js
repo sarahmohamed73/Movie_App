@@ -6,6 +6,7 @@ import MovieCard from '../MoviesList/MovieCard';
 
 
 export default function Recommendations() {
+<<<<<<< HEAD
   const params = useParams()
   const [recommendsMovie, setRecommendsMovie] = useState([])
   const navigate = useNavigate()
@@ -38,6 +39,18 @@ export default function Recommendations() {
         :
         <p className='mb-5 fw-medium fs-4 '>Sorry, I Havn't Any Recommends For You</p>
       }
+=======
+  
+  useEffect(() => {
+    recommends(775552)
+      .then((result) => console.log(result.data.results))
+      .catch((error) => console.log(error));
+    }, []);
+
+  return (
+    <div>
+      
+>>>>>>> aa7b7c9bdc0246f3f619d7fc48679c1852f4057f
     </div>    
   )
 }

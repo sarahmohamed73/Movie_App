@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import wishlistReducer from "./Slices/wishlistSlice";
+import watchlistReducer from "./Slices/watchlistSlice";
 
 export default configureStore({
   reducer: {
-    wishlist: wishlistReducer,
+    watchlist: watchlistReducer,
   },
 });

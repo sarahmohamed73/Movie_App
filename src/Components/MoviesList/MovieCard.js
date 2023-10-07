@@ -4,20 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as NotLike } from "@fortawesome/free-regular-svg-icons"
 import { faHeart as Like } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux";
-import { addMovie, removeMovie } from "./../../Store/Slices/wishlistSlice";
+import { addMovie, removeMovie } from "../../Store/Slices/watchlistSlice";
 
 export default function MovieCard({ movie, navigateDetail }) {
-  const wishlist = useSelector((state) => state.wishlist.movies);
+  const watchlist = useSelector((state) => state.watchlist.movies);
   const dispatch = useDispatch()
 
-  const isMovieInWishlist = wishlist.some((wishlistMovie) => wishlistMovie.id === movie.id);
+  const isMovieInWatchlist = watchlist.some((watchlistMovie) => watchlistMovie.id === movie.id);
 
-  const addToWishlist = (event) => {
+  const addToWatchlist = (event) => {
     event.stopPropagation();
     dispatch(addMovie(movie));
   };
 
-  const removeFromWishlist = (event) => {
+  const removeFromWatchlist = (event) => {
     event.stopPropagation();
     dispatch(removeMovie(movie));
   };
@@ -34,13 +34,13 @@ export default function MovieCard({ movie, navigateDetail }) {
           <small class="text-body-secondary">{movie.release_date}</small>
           
             {
-            isMovieInWishlist 
+            isMovieInWatchlist
             ? 
-            <span className="text-end px-3 text-success" onClick={removeFromWishlist}>
+            <span className="text-end px-3" style={{color: 'var(--mainColor)'}} onClick={removeFromWatchlist}>
               <FontAwesomeIcon icon={Like} className='fs-5' />
             </span>
             :
-            <span className="text-end px-3 text-success" onClick={addToWishlist}>
+            <span className="text-end px-3" style={{color: 'var(--mainColor)'}} onClick={addToWatchlist}>
               <FontAwesomeIcon icon={NotLike} className='fs-5' />
             </span>
             }

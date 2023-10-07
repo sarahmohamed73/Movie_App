@@ -1,4 +1,3 @@
-import { counter } from "@fortawesome/fontawesome-svg-core";
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
@@ -6,8 +5,8 @@ const INITIAL_STATE = {
   counter: 0
 };
 
-const wishlistSlice = createSlice({
-  name: "wishlist",
+const watchlistSlice = createSlice({
+  name: "watchlist",
   initialState: INITIAL_STATE,
   reducers: {
     addMovie: (state, action) => {
@@ -23,5 +22,5 @@ const wishlistSlice = createSlice({
   },
 });
 
-export const { addMovie, removeMovie } = wishlistSlice.actions;
-export default wishlistSlice.reducer;
+export const { addMovie, removeMovie } = watchlistSlice.actions;
+export default watchlistSlice.reducer;
