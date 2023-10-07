@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from "react";
+import { LanguageContext } from "./../../Context/Language"
 import { movieDetails } from './../../APIs/details'
 import { useState, useEffect } from "react";
 import StarRating from './../MoviesList/Rating'
@@ -18,11 +19,12 @@ export default function MovieDetails() {
   const params = useParams()
   const watchlist = useSelector((state) => state.watchlist.movies);
   const dispatch = useDispatch()
+  const { contextLanguage, setContextLanguage } = useContext(LanguageContext)
 
   const isMovieInWatchlist = watchlist.some((watchlistMovie) => watchlistMovie.id === moviesDetails.id);
   
   useEffect(() => {
-    movieDetails(params.id)
+    movieDetails(params.id, contextLanguage)
       .then((result) => {
         setmoviesDetails(result.data)
         setMovieGenres(result.data.genres)
@@ -30,7 +32,7 @@ export default function MovieDetails() {
         setProductionCompanies(result.data.production_companies)
       })
       .catch((error) => console.log(error));
-    }, [params.id]);
+    }, [params.id, contextLanguage]);
 
     const addToWatchlist = (event) => {
       event.stopPropagation();
@@ -91,10 +93,15 @@ export default function MovieDetails() {
             </p>
             <p className='fs-5 ms-lg-5 ms-0'>
               <span className='fw-bold me-2'>Languages: </span>
-              {movieLanguages.map((language) => {
+              {movieLanguages.map((language, index) => {
+                if(index != movieLanguages.length - 1) {
                 return (
                   <span>{language.english_name}, </span>
-                )
+                )}
+                else {
+                return (
+                  <span>{language.english_name}</span>
+                )}
               })}
             </p>
           </div>
@@ -112,7 +119,7 @@ export default function MovieDetails() {
           </div>
           
           <div style={{ border:'1px solid var(--mainColor)', width:'fit-content'}} className=' rounded-5  py-1 px-3'>
-            <a href={moviesDetails.homepage} className='text-decoration-none text-dark'>Website <FontAwesomeIcon icon={faLink} className='fs-5' /></a>
+            <a href={moviesDetails.homepage} className='text-decoration-none text-dark' target="_blank">Website <FontAwesomeIcon icon={faLink} className='fs-5' /></a>
           </div>
 
         </div>

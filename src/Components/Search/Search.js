@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from "react";
+import { LanguageContext } from "./../../Context/Language"
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { search, searchPages } from '../../APIs/search'
@@ -12,21 +13,24 @@ export default function SearchMovies() {
   const [searchResult, setSearchResult] = useState([])
   const [searchParams, setSearchParams] = useState(params.name)
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1)
   const navigate = useNavigate()
+  const { contextLanguage, setContextLanguage } = useContext(LanguageContext)
 
   useEffect(() => {
-    search(params.name)
+    search(params.name, contextLanguage)
       .then((result) => setSearchResult(result.data.results))
       .catch((error) => console.log(error));
-    }, [params.name]);
+    }, [params.name, contextLanguage]);
 
     useEffect(() => {
-      searchPages(params.name, currentPage)
+      searchPages(params.name, currentPage, contextLanguage)
       .then((result) => {
         setSearchResult(result.data.results)
+        setTotalPages(result.data.total_pages)
       })
       .catch((error) => console.log(error));
-    }, [currentPage, params.name]);
+    }, [currentPage, params.name, contextLanguage]);
 
     const redirectToDetails = (id) => {
       navigate(`/Details/${id}`)
@@ -76,6 +80,7 @@ export default function SearchMovies() {
           <Pagination
             currentPage={currentPage}
             onPageChange={handlePageChange}
+            totalPages={totalPages}
           />
         </div> 
       </>

@@ -23,14 +23,14 @@ export default function MovieCard({ movie, navigateDetail }) {
   };
 
   return (
-    <div class="card border-0 " onClick={() => navigateDetail(movie.id)}>
-      <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} class="card-img-top rounded-1 " alt="..." />
-      <div class="card-body">
+    <div class="card border-0" onClick={() => navigateDetail(movie.id)}>
+      <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} class="card-img-top rounded-1" alt={movie.original_title}/>
+      <div class="card-body px-0">
         <h5 class="card-title text-start">{movie.original_title.substr(0,15)}</h5>
-        <p class="card-text">
+        <p class="card-text p-0 text-start mb-2">
           <StarRating rating={movie.vote_average / 2} />
         </p>
-        <p class="card-text d-flex justify-content-between ">
+        <p class="card-text d-flex justify-content-between m-0">
           <small class="text-body-secondary">{movie.release_date}</small>
           
             {
@@ -44,7 +44,6 @@ export default function MovieCard({ movie, navigateDetail }) {
               <FontAwesomeIcon icon={NotLike} className='fs-5' />
             </span>
             }
-          
         </p>
       </div>  
     </div>

@@ -1,5 +1,6 @@
 import { axiosInstance } from "./config";
 
-export const movieDetails = (id) => {
-  return axiosInstance.get(`/movie/${id}`)
+export const movieDetails = (id, language) => {
+  
+  return axiosInstance.get(`/movie/${id}?language=${language}`)
 }

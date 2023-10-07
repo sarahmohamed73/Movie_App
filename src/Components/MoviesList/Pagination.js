@@ -1,11 +1,12 @@
 import React from 'react'
 import './Pagination.css'
 
-export default function Pagination({ currentPage, onPageChange }) {
+export default function Pagination({ currentPage, onPageChange, totalPages }) {
 
     const renderPageNumbers = () => {
       const pageNumbers = [];
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= totalPages; i++) {
+        if (i > 10 ) break;
         pageNumbers.push(
           <li className="page-item">
             <button key={i}

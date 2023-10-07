@@ -1,30 +1,32 @@
-import React from 'react'
+import React, {useContext} from "react";
 import { movieList } from './../../APIs/movies'
 import { moviePage } from '../../APIs/moviesPages';
 import MovieCard from './MovieCard';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "./Pagination"
+import { LanguageContext } from "./../../Context/Language"
 
 export default function MovieList() {
   const [moviesList, setMoviesList] = useState([])
   const [movieName, setMovieName] = useState('')
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate()
+  const { contextLanguage, setContextLanguage } = useContext(LanguageContext)
 
   useEffect(() => {
-    movieList()
+    movieList(contextLanguage)
       .then((result) => setMoviesList(result.data.results))
       .catch((error) => console.log(error));
-    }, []);
+    }, [contextLanguage]);
 
   useEffect(() => {
-      moviePage(currentPage)
+      moviePage(currentPage, contextLanguage)
       .then((result) => {
         setMoviesList(result.data.results)
       })
       .catch((error) => console.log(error));
-    }, [currentPage]);
+    }, [currentPage, contextLanguage]);
 
   const handelMovieName = (event) => {
     setMovieName(event.target.value)
@@ -58,7 +60,7 @@ export default function MovieList() {
         </form>
       </div>
       <div className='movies'>
-        <h3 className='text-start mb-4'>Popular Movies</h3>
+        <h3 className='text-start mb-5'>Popular Movies</h3>
         <div className="row row-cols-1 row-cols-lg-6 row-cols-md-2 g-4 justify-content-center align-items-center">
           {moviesList.map((movie) => {
             return (
@@ -74,6 +76,7 @@ export default function MovieList() {
       <Pagination
         currentPage={currentPage}
         onPageChange={handlePageChange}
+        totalPages={10}
       />
     </div>
     </>    

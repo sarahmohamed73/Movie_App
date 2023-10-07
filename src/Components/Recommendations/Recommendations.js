@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from "react";
+import { LanguageContext } from "./../../Context/Language"
 import { recommends } from './../../APIs/recommends'
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,12 +10,13 @@ export default function Recommendations() {
   const params = useParams()
   const [recommendsMovie, setRecommendsMovie] = useState([])
   const navigate = useNavigate()
+  const { contextLanguage, setContextLanguage } = useContext(LanguageContext)
 
   useEffect(() => {
-    recommends(params.id)
+    recommends(params.id, contextLanguage)
       .then((result) => setRecommendsMovie(result.data.results))
       .catch((error) => console.log(error));
-    }, [params.id]);
+    }, [params.id, contextLanguage]);
 
     const redirectToDetails = (id) => {
       navigate(`/Details/${id}`)
